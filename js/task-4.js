@@ -4,15 +4,21 @@ let totalPrice = 0;
 
 const userInput = prompt("Скільки дроїдів ви хочете купити?");
 
-if (userInput === null || userInput.trim() === '') {
+if (userInput === null) {
     console.log("Скасовано користувачем!");
-} else {    
-    totalPrice = userInput * pricePerDroid;
-    
-    if (totalPrice > credits) {
-        console.log('Недостатньо коштів на рахунку!');
+} else {
+    const inputEl = Number(userInput);
+    if (Number.isNaN(inputEl) === false) {
+        totalPrice = inputEl * pricePerDroid;    
+        if (totalPrice > credits) {
+            console.log('Недостатньо коштів на рахунку!');
+        }
+        else {
+            console.log(`Ви купили ${inputEl} дроїдів, на рахунку залишилося ${credits - totalPrice} кредитів.`);
+        }
     }
     else {
-        console.log(`Ви купили ${userInput} дроїдів, на рахунку залишилося ${credits - totalPrice} кредитів.`);
+        console.log("Користувач ввів не число.");
+        alert('Ви ввели не число.');        
     }
 }
